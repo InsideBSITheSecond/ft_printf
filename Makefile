@@ -26,6 +26,9 @@ $(NAME) : libft.a $(OBJS)
 	cp libft.a libftprintf.a
 	$(AR) $(ARARGS) $(NAME) $(OBJS)
 
+%.o : %.c
+	$(CC) $(CCARGS) -Iincludes -c $< -o ${<:.c=.o}
+
 libft.a :
 	cd libft && $(MAKE) bonus
 	cp libft/libft.a libft.a
