@@ -22,24 +22,22 @@ OBJS := $(SRCS:.c=.o)
 
 NAME := libftprintf.a
 
-$(NAME) : libft.a $(OBJS)
-	cp libft.a libftprintf.a
+$(NAME) : libft/libft.a $(OBJS)
+	cp libft/libft.a libftprintf.a
 	$(AR) $(ARARGS) $(NAME) $(OBJS)
 
 %.o : %.c
 	$(CC) $(CCARGS) -Iincludes -c $< -o ${<:.c=.o}
 
-libft.a :
+libft/libft.a :
 	cd libft && $(MAKE) bonus
-	cp libft/libft.a libft.a
 
 clean :
-	rm -f $(OBJS) $(BOBJS)
+	rm -f $(OBJS) $(BOBJS) libft.a
 	cd libft && $(MAKE) clean
 
 fclean : clean
-	rm -f $(NAME) libft.a
-	cd libft && $(MAKE) fclean
+	rm -f $(NAME) libft.a libft/libft.a
 
 all : $(NAME)
 
